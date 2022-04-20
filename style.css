@@ -1,0 +1,14 @@
+* {
+  text-align: center;
+}
+
+.gameboard {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}
+
+.square {
+  display: flex;
+  border: 2px solid black;
+}
