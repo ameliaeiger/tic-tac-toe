@@ -3,20 +3,20 @@ class Game {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.board = ""
-    this.turn = "Player One"
+    this.nextTurn = playerTwo
     this.currentPlayer = playerOne
   }
   alternateTurn(){
     if (this.playerOne.isTurn == true){
       this.playerOne.isTurn = false;
       this.playerTwo.isTurn = true;
-      this.turn = "Player Two";
+      this.nextTurn = "Player Two";
       this.currentPlayer = playerOne;
       displayTurn();
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
-      this.turn = "Player One";
+      this.nextTurn = "Player One";
       this.currentPlayer = playerTwo;
       displayTurn();
     }

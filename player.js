@@ -1,6 +1,7 @@
 class Player{
-  constructor(id, turn){
+  constructor(id, name, turn){
     this.id = id
+    this.name = name
     this.score = 0;
     this.isTurn = turn
   }

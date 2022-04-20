@@ -2,8 +2,8 @@
 let gameBoard = document.getElementById("gameboard");
 let turnTracker = document.getElementById("turn-tracker")
 
-let playerOne = new Player("X", true);
-let playerTwo = new Player ("O", false);
+let playerOne = new Player("X", "Player One", true);
+let playerTwo = new Player ("O", "Player Two", false);
 // let game = new Game(playerOne, playerTwo);
 
 
@@ -21,20 +21,24 @@ let finn = new Game(playerOne, playerTwo)
 finn.generateBoard()
 
 function instantiatePlayers() {
-  let playerOne = new Player("X", true);
-  let playerTwo = new Player ("O", false);
+  let playerOne = new Player("X", "Player One", true);
+  let playerTwo = new Player ("O", "Player Two", false);
 }
 
 
 function handleClick(){
   if (event.target.classList.contains("square")){
     let chosenSquare = event.target.closest("div")
-    if(playerOne.isTurn == true){
+    if (!chosenSquare.innerHTML){
+    if (playerOne.isTurn == true){
       chosenSquare.innerHTML = playerOne.id
       finn.alternateTurn()
     } else {
       chosenSquare.innerHTML = playerTwo.id
       finn.alternateTurn()
+    }
+  } else {
+    console.log("seat's taken!")
     }
   }
 }
@@ -55,7 +59,7 @@ function checkWinner(){
 }
 
 function displayTurn(){
-  turnTracker.innerText = `It's ${finn.turn}'s turn!`
+  turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
 }
 
 // function checkWinner(){
