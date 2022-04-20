@@ -3,15 +3,22 @@ class Game {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.board = ""
-    this.turn = ""
+    this.turn = "Player One"
+    this.currentPlayer = playerOne
   }
   alternateTurn(){
     if (this.playerOne.isTurn == true){
       this.playerOne.isTurn = false;
       this.playerTwo.isTurn = true;
+      this.turn = "Player Two";
+      this.currentPlayer = playerOne;
+      displayTurn();
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
+      this.turn = "Player One";
+      this.currentPlayer = playerTwo;
+      displayTurn();
     }
   }
   checkScore() {
@@ -21,9 +28,8 @@ class Game {
   generateBoard() {
     for (let i=0; i < 9; i++) {
       let square = document.createElement("div");
-      square.className = `square`;
+      square.className = `square num${i}`;
       document.getElementById("gameboard").appendChild(square);
-      console.log("made board!");
     }
   }
 }
