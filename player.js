@@ -4,6 +4,7 @@ class Player{
     this.name = name
     this.score = 0;
     this.isTurn = turn
+    this.moves = []
   }
   addPoint(){
     this.score += 1
