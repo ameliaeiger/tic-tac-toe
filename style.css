@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+body, header, section {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  align-items: center;
+}
+
+
+/* GAME BOARD */
 .gameboard {
   display: grid;
   grid-template-columns: 100px 100px 100px;

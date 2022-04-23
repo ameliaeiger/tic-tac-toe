@@ -68,7 +68,8 @@ function checkWinner(){
   for (let i =0; i < winConditions.length; i++){
     if(finn.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
       finn.currentPlayer.addPoint()
-      console.log(finn.currentPlayer.moves)
+      console.log("win!")
+      finn.resetGame()
     }
   }
 }
