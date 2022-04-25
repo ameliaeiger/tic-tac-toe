@@ -4,6 +4,8 @@ let turnTracker = document.getElementById("turn-tracker")
 
 let playerOne = new Player("assets/finn.svg", "Player One", true);
 let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
+
+let dropdownOne = document.getElementById("dropdown-one");
 // let game = new Game(playerOne, playerTwo);
 
 
@@ -12,6 +14,8 @@ let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
 document.addEventListener("load", instantiatePlayers)
 gameBoard.addEventListener("click", handleClick)
 
+dropdownOne.addEventListener("mouseover", addSelectedClass);
+dropdownOne.addEventListener("mouseout", removeSelectedClass);
 
 
 
@@ -95,4 +99,16 @@ let winConditions = [
 
 function displayTurn(){
   turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
+}
+
+function addSelectedClass(){
+  if (event.target.classList.contains("player-icon")){
+    event.target.classList.add("selected")
+  }
+}
+
+function removeSelectedClass(){
+  if (event.target.classList.contains("player-icon")){
+    event.target.classList.remove("selected")
+  }
 }

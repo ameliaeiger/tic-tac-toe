@@ -45,6 +45,7 @@ h2 {
 }
 
 h3 {
+  position: relative;
   margin-top: 0;
   border-bottom: 3px solid black;
 }
@@ -71,12 +72,15 @@ section {
 
 /* COLUMNS */
 .column {
+  min-width: 275px;
+  min-height: 275px;
   align-items: center;
   /* background-color: rgba(255, 255, 255, .8); */
   background-color: rgba(255, 255, 255, .8);
-  padding: 25px 75px;
+  /* padding: 25px 75px; */
   border-radius: 25px;
   margin: 25px;
+  padding-top: 25px;
 }
 
 .dropdown {
@@ -87,8 +91,29 @@ section {
   display: flex;
 }
 
+.player-icon {
+  border: 2px solid rgba(255, 255, 255 .6);
+  width: 50px;
+  transition: 0.4s;
+}
+
 .dropdown-content {
   display: none;
+}
+
+.selected {
+  cursor: pointer;
+  background-color: blue;
+}
+
+#visibleOne {
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+#visibleTwo {
+  border: 2px solid black;
+  border-radius: 15px;
 }
 
 /* .player-icon.selected {
