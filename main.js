@@ -34,13 +34,13 @@ function handleClick(){
       console.log("Player one")
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       chosenSquare.innerHTML = playerOne.id
-      checkWinner()
+      finn.checkWinner()
       finn.alternateTurn()
     } else {
       console.log("Player two")
       chosenSquare.innerHTML = playerTwo.id
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      checkWinner()
+      finn.checkWinner()
       finn.alternateTurn()
     }
     } else {
@@ -64,15 +64,15 @@ let winConditions = [
 
 
 
-function checkWinner(){
-  for (let i =0; i < winConditions.length; i++){
-    if(finn.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
-      finn.currentPlayer.addPoint()
-      console.log("win!")
-      finn.resetGame()
-    }
-  }
-}
+// function checkWinner(){
+//   for (let i =0; i < winConditions.length; i++){
+//     if(finn.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
+//       finn.currentPlayer.addPoint()
+//       console.log("win!")
+//       finn.resetGame()
+//     }
+//   }
+// }
 
 
 

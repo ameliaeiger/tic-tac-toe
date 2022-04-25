@@ -12,6 +12,8 @@ main {
   justify-content: space-between;
 }
 
+
+/* COLUMNS */
 .column {
   align-items: center;
 }
