@@ -2,16 +2,29 @@
 let gameBoard = document.getElementById("gameboard");
 let turnTracker = document.getElementById("turn-tracker")
 
-let playerOne = new Player("assets/finn.svg", "Player One", true);
-let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
+let playerOne = new Player("assets/finn.svg", "One", true);
+let playerTwo = new Player ("assets/jake.svg", "Two", false);
+
+let dropdownOne = document.getElementById("dropdown-one");
+let playerOneIcon = document.getElementById("visibleOne");
 // let game = new Game(playerOne, playerTwo);
 
+let icons = [
+  "assets/peebs.svg",
+  "assets/marceline.svg",
+  "assets/finn.svg",
+  "assets/ice-king.svg",
+  "assets/lumpy.svg",
+]
 
 // EVENT LISTENERS
 
-document.addEventListener("load", instantiatePlayers)
+// document.addEventListener("load", )
 gameBoard.addEventListener("click", handleClick)
 
+dropdownOne.addEventListener("mouseover", addSelectedClass);
+dropdownOne.addEventListener("mouseout", removeSelectedClass);
+dropdownOne.addEventListener("click", changeIconOne);
 
 
 
@@ -20,8 +33,8 @@ gameBoard.addEventListener("click", handleClick)
 let finn = new Game(playerOne, playerTwo)
 
 function instantiatePlayers() {
-  let playerOne = new Player("assets/finn.svg", "Player One", true);
-  let playerTwo = new Player ("O", "Player Two", false);
+  let playerOne = new Player("assets/finn.svg", "One", true);
+  let playerTwo = new Player ("O", "Two", false);
 }
 
 
@@ -95,4 +108,32 @@ let winConditions = [
 
 function displayTurn(){
   turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
+}
+
+function addSelectedClass(){
+  displayIconChoices()
+  if (event.target.classList.contains("player-icon")){
+    event.target.classList.add("selected")
+  }
+}
+
+function removeSelectedClass(){
+  if (event.target.classList.contains("player-icon")){
+    event.target.classList.remove("selected")
+  }
+}
+
+function changeIconOne(){
+  if (event.target.classList.contains("player-icon")){
+    finn.playerOne.id = event.target.src
+    event.target.src = playerOneIcon.src
+    finn.playerOne.selectIcon()
+  }
+}
+let allChoices = document.querySelectorAll("player-icon")
+
+function displayIconChoices(){
+  for (let i=0; i < icons.length; i++){
+    allChoices[i].src = icons[i]
+  }
 }

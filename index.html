@@ -13,14 +13,16 @@
     <h2 class="turn-tracker" id="turn-tracker">Go Player One!</h2>
     <div class="game-component-container">
       <section class="column player-one">
-        <div class="dropdown">
-          <img class="player-icon selected" src="assets/finn.svg">
-          <img class="player-icon dropdown-content" src="assets/peebs.svg">
-          <img class="player-icon dropdown-content" src="assets/marceline.svg">
+        <h3>Choose your character:</h3>
+        <div class="dropdown" id="dropdown-one">
+          <img class="player-choice dropdown-content" src="assets/peebs.svg">
+          <img class="player-choice dropdown-content" src="assets/marceline.svg">
+          <img class="player-icon" id="visibleOne" src="assets/finn.svg">
           <img class="player-icon dropdown-content" src="assets/ice-king.svg">
           <img class="player-icon dropdown-content" src="assets/lumpy.svg">
         </div>
-        <h3>Player One</h3>
+        <button id="submit">Ready!</button>
+        <h3></h3>
       </section>
       <section class="gameboard" id="gameboard">
         <div class="square num0" id="0"></div>
@@ -34,7 +36,14 @@
         <div class="square num8" id="8"></div>
       </section>
       <section class="column player-two">
-        <img class="player-icon selected" src="assets/jake.svg">
+        <div class="dropdown" id="dropdown-two">
+          <img class="player-icon dropdown-content" src="assets/peebs.svg">
+          <img class="player-icon dropdown-content" src="assets/marceline.svg">
+          <img class="player-icon selected" src="assets/jake.svg">
+          <img class="player-icon" id="visibleTwo" src="assets/finn.svg">
+          <img class="player-icon dropdown-content" src="assets/ice-king.svg">
+          <img class="player-icon dropdown-content" src="assets/lumpy.svg">
+        </div>
         <h3>Player Two</h3>
       </section>
     </div>
