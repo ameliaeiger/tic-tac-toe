@@ -1,5 +1,18 @@
+@font-face {
+  font-family: "CottonCloud";
+  src: url("assets/CottonCloud.ttf");
+}
+
 * {
   text-align: center;
+}
+
+body {
+  background-image: url("assets/finnandjake.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 800px;
+  font-family: "CottonCloud";
 }
 
 body, header, section {
@@ -7,23 +20,39 @@ body, header, section {
   flex-direction: column;
 }
 
+h1 {
+  display: flex;
+  background-color: rgb(168,236,255, .8);
+  justify-content: center;
+  font-size: 100px;
+  margin-bottom: 10px;
+}
+
 main {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+section {
+  margin: 25px;
 }
 
 
 /* COLUMNS */
 .column {
   align-items: center;
+  background-color: rgba(255, 255, 255, .8);
+  padding: 25px 50px;
+  border-radius: 25px;
 }
 
 
 /* GAME BOARD */
 .gameboard {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 .square {
