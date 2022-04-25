@@ -3,8 +3,9 @@ class Game {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.board = ""
-    this.nextTurn = playerTwo
-    this.currentPlayer = playerOne
+    this.nextTurn = playerTwo;
+    this.currentPlayer = playerOne;
+    this.turns = 0;
   }
   alternateTurn(){
     if (this.playerOne.isTurn == true){
@@ -12,16 +13,32 @@ class Game {
       this.playerTwo.isTurn = true;
       this.nextTurn = "Player Two";
       this.currentPlayer = playerTwo;
+      this.turns += 1;
       displayTurn();
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
       this.nextTurn = "Player One";
       this.currentPlayer = playerOne;
+      this.turns += 1;
       displayTurn();
     }
   }
-  checkScore() {
+  checkWinner(){
+    if (this.turns == 9 && playerOne.moves.length == 5){
+     console.log("draw")
+     this.resetGame()
+   } else {
+     for (let i =0; i < winConditions.length; i++){
+      if(this.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
+        this.currentPlayer.addPoint()
+        console.log("win!")
+        this.resetGame()
+      }
+    }
+  }
+}
+checkScore() {
     console.log(this.playerOne.score)
     console.log(this.playerTwo.score)
   }
@@ -38,8 +55,8 @@ class Game {
       squares[i].innerHTML = ""
       this.playerOne.moves = []
       this.playerTwo.moves = []
+      this.turns = 0;
     }
-
   }
 }
 
