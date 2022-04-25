@@ -18,7 +18,6 @@ gameBoard.addEventListener("click", handleClick)
 // FUNCTIONS AND EVENT HANDLERS
 
 let finn = new Game(playerOne, playerTwo)
-finn.generateBoard()
 
 function instantiatePlayers() {
   let playerOne = new Player("assets/finn.svg", "Player One", true);

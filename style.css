@@ -11,7 +11,7 @@ body {
   background-image: url("assets/finnandjake.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 800px;
+  min-height: 900px;
   font-family: "CottonCloud";
 }
 
@@ -20,11 +20,16 @@ body, header, section {
   flex-direction: column;
 }
 
+header {
+  justify-content: center;
+}
+
 h1 {
   display: flex;
   background-color: rgb(168,236,255, .8);
   justify-content: center;
   font-size: 100px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
@@ -41,7 +46,8 @@ section {
 /* COLUMNS */
 .column {
   align-items: center;
-  background-color: rgba(255, 255, 255, .8);
+  /* background-color: rgba(255, 255, 255, .8); */
+  background-color: rgba(255, 248, 232, .8);
   padding: 25px 50px;
   border-radius: 25px;
 }
@@ -52,7 +58,9 @@ section {
   display: grid;
   grid-template-columns: 150px 150px 150px;
   grid-template-rows: 150px 150px 150px;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 248, 232, .8);
+  padding: 25px;
+  border-radius: 25px;
 }
 
 .square {
@@ -60,5 +68,23 @@ section {
   justify-content: center;
   align-items: center;
   font-size: 25px;
-  border: 2px solid black;
+  border: 5px solid #1a6cfb;
+}
+
+
+/* MAKE NTH CHILDREN? */
+.num0, .num1, .num2 {
+  border-top: 0;
+}
+
+.num6, .num7, .num8 {
+  border-bottom: 0;
+}
+
+.num0, .num3, .num6 {
+  border-left: 0;
+}
+
+.num2, .num5, .num8 {
+  border-right: 0;
 }
