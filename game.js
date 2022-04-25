@@ -7,6 +7,10 @@ class Game {
     this.currentPlayer = playerOne;
     this.turns = 0;
   }
+  instantiatePlayer(){
+    let playerOne = new Player("assets/finn.svg", "Player One", true);
+    let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
+  }
   alternateTurn(){
     if (this.playerOne.isTurn == true){
       this.playerOne.isTurn = false;
