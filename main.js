@@ -5,9 +5,19 @@ let turnTracker = document.getElementById("turn-tracker")
 let playerOne = new Player("assets/finn.svg", "One", true);
 let playerTwo = new Player ("assets/jake.svg", "Two", false);
 
+
+// Player One
 let dropdownOne = document.getElementById("dropdown-one");
 let playerOneIcon = document.getElementById("visibleOne");
-// let game = new Game(playerOne, playerTwo);
+let readyPlayerOne = document.getElementById("submit-one");
+let playerOneChoices = document.querySelectorAll(".dropdown-content-one")
+
+
+//Player Two
+let playerTwoIcon = document.getElementById("visibleTwo")
+let dropdownTwo = document.getElementById("dropdown-two");
+let playerTwoChoices = document.querySelectorAll(".dropdown-content-two");
+let readyPlayerTwo = document.getElementById("submit-two");
 
 let icons = [
   "assets/peebs.svg",
@@ -19,12 +29,12 @@ let icons = [
 
 // EVENT LISTENERS
 
-// document.addEventListener("load", )
 gameBoard.addEventListener("click", handleClick)
+readyPlayerOne.addEventListener("click", submitCharacterSelection);
+readyPlayerTwo.addEventListener("click", submitCharacterSelection);
+dropdownOne.addEventListener("click", changeIcon);
+dropdownTwo.addEventListener("click", changeIcon);
 
-dropdownOne.addEventListener("mouseover", addSelectedClass);
-dropdownOne.addEventListener("mouseout", removeSelectedClass);
-dropdownOne.addEventListener("click", changeIconOne);
 
 
 
@@ -110,30 +120,41 @@ function displayTurn(){
   turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
 }
 
-function addSelectedClass(){
-  displayIconChoices()
-  if (event.target.classList.contains("player-icon")){
-    event.target.classList.add("selected")
+function submitCharacterSelection(){
+  if (event.target.id == "submit-one"){
+    for (let i=0; i<playerOneChoices.length; i++){
+      playerOneChoices[i].classList.add("hidden")
+    }
+    playerOneIcon.classList.add("chosen-icon")
+  } else if (event.target.id == "submit-two"){
+    for (let i=0; i<playerTwoChoices.length; i++){
+      playerTwoChoices[i].classList.add("hidden")
+    }
+    playerTwoIcon.classList.add("chosen-icon")
   }
 }
 
 function removeSelectedClass(){
   if (event.target.classList.contains("player-icon")){
-    event.target.classList.remove("selected")
+    event.target.classList.remove("visible")
   }
 }
 
-function changeIconOne(){
-  if (event.target.classList.contains("player-icon")){
+function changeIcon(){
+  if (event.target.classList.contains("dropdown-content-one")){
     finn.playerOne.id = event.target.src
     event.target.src = playerOneIcon.src
     finn.playerOne.selectIcon()
+  } else if (event.target.classList.contains("dropdown-content-two")){
+    console.log("here line 145")
+    finn.playerTwo.id = event.target.src
+    event.target.src = playerTwoIcon.src
+    finn.playerTwo.selectIcon()
   }
 }
-let allChoices = document.querySelectorAll("player-icon")
 
-function displayIconChoices(){
-  for (let i=0; i < icons.length; i++){
-    allChoices[i].src = icons[i]
-  }
-}
+// function displayIconChoices(){
+//   for (let i=0; i < icons.length; i++){
+//     allChoices[i].src = icons[i]
+//   }
+// }
