@@ -1,9 +1,4 @@
 @font-face {
-  font-family: "CottonCloud";
-  src: url("assets/CottonCloud.ttf");
-}
-
-@font-face {
   font-family: "hujan";
   src: url("assets/Hujan.ttf")
 }
@@ -13,10 +8,6 @@
 }
 
 body {
-  /* background-image: url("assets/finnandjake.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover; */
-  /* min-height: 900px; */
   font-family: "hujan";
   justify-content: center;
   align-items: center;
@@ -29,6 +20,7 @@ body, header, section {
 }
 
 header {
+  display: flex;
   justify-content: center;
 }
 
@@ -86,6 +78,35 @@ section {
   border-radius: 25px;
   margin: 25px;
 }
+
+.dropdown {
+  display: flex;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.dropdown-content {
+  display: none;
+}
+
+/* .player-icon.selected {
+  width: 50px;
+  transition: width .5s;
+}
+
+.selected:hover {
+  width: 80px;
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.selected:hover .dropdown-content {
+  display: block;
+} */
 
 
 /* GAME BOARD */
