@@ -2,8 +2,8 @@
 let gameBoard = document.getElementById("gameboard");
 let turnTracker = document.getElementById("turn-tracker")
 
-let playerOne = new Player("X", "Player One", true);
-let playerTwo = new Player ("O", "Player Two", false);
+let playerOne = new Player("assets/finn.svg", "Player One", true);
+let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
 // let game = new Game(playerOne, playerTwo);
 
 
@@ -18,10 +18,9 @@ gameBoard.addEventListener("click", handleClick)
 // FUNCTIONS AND EVENT HANDLERS
 
 let finn = new Game(playerOne, playerTwo)
-finn.generateBoard()
 
 function instantiatePlayers() {
-  let playerOne = new Player("X", "Player One", true);
+  let playerOne = new Player("assets/finn.svg", "Player One", true);
   let playerTwo = new Player ("O", "Player Two", false);
 }
 
@@ -31,14 +30,14 @@ function handleClick(){
     let chosenSquare = event.target.closest("div")
     if (!chosenSquare.innerHTML){
     if (playerOne.isTurn){
-      console.log("Player one")
+      // chosenSquare.innerHTML = playerOne.id
+      chosenSquare.innerHTML = `<img src=${playerOne.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      chosenSquare.innerHTML = playerOne.id
-      finn.checkWinner()
-      finn.alternateTurn()
+      finn.checkWinner();
+      finn.alternateTurn();
     } else {
       console.log("Player two")
-      chosenSquare.innerHTML = playerTwo.id
+      chosenSquare.innerHTML = `<img src=${playerTwo.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       finn.checkWinner()
       finn.alternateTurn()
