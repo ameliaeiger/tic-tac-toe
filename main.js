@@ -177,13 +177,11 @@ function handleClick(){
     let chosenSquare = event.target.closest("div")
     if (!chosenSquare.innerHTML){
     if (playerOne.isTurn){
-      // chosenSquare.innerHTML = playerOne.id
       chosenSquare.innerHTML = `<img src=${playerOne.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       finn.checkWinner();
       finn.alternateTurn();
     } else {
-      console.log("Player two")
       chosenSquare.innerHTML = `<img src=${playerTwo.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       finn.checkWinner()
@@ -242,6 +240,20 @@ let winConditions = [
 
 function displayTurn(){
   turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
+}
+
+let playerOneScoreBoard = document.getElementById("one-score");
+let playerTwoScoreBoard = document.getElementById("two-score");
+
+function displayScore(){
+  playerOneScoreBoard.innerText = playerOne.score;
+  playerTwoScoreBoard.innerText = playerTwo.score;
+}
+
+function clearBoard(){
+  for (let i=0; i < squares.length; i++){
+    squares[i].innerHTML = ""
+  }
 }
 
 function submitCharacterSelection(){

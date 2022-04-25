@@ -2,6 +2,8 @@ class Game {
   constructor(playerOne, playerTwo){
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
+    this.playerOneScore = this.playerOne.score
+    this.playerTwoScore = this.playerTwo.score
     this.board = ""
     this.nextTurn = playerTwo;
     this.currentPlayer = playerOne;
@@ -36,8 +38,10 @@ class Game {
      for (let i =0; i < winConditions.length; i++){
       if(this.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
         this.currentPlayer.addPoint()
+        displayScore()
         console.log("win!")
         this.resetGame()
+        setTimeout(clearBoard, 3000)
       }
     }
   }
@@ -55,12 +59,9 @@ checkScore() {
   //   }
   // }
   resetGame(){
-    for (let i=0; i < squares.length; i++){
-      squares[i].innerHTML = ""
       this.playerOne.moves = []
       this.playerTwo.moves = []
       this.turns = 0;
-    }
   }
 }
 
