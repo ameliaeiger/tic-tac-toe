@@ -64,6 +64,29 @@ section {
   align-self: flex-start;
 }
 
+button {
+  align-content: center;
+  font-family: "hujan";
+  padding: 10px;
+  position: fixed;
+  top: 500px;
+  border-style: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  outline: none;
+}
+
+button:hover {
+  background-color: rgb(174 213 128);
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #a1bd80;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
 .game-component-container {
   display: flex;
   justify-content: space-between;
@@ -75,50 +98,50 @@ section {
   min-width: 275px;
   min-height: 275px;
   align-items: center;
-  /* background-color: rgba(255, 255, 255, .8); */
   background-color: rgba(255, 255, 255, .8);
-  /* padding: 25px 75px; */
   border-radius: 25px;
   margin: 25px;
   padding-top: 25px;
 }
 
+/* CHARACTER SELECT */
 .dropdown {
   display: flex;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-content-one, .dropdown-content-two {
+  display: none;
+}
+
+#dropdown-one:hover .dropdown-content-one {
   display: flex;
 }
 
-.dropdown-content:hover {
-  background-color: rgb(238 254 232);
-  border: 2px solid black;
+#dropdown-two:hover .dropdown-content-two {
+  display: flex;
+}
+
+.hidden {
+display: none!important;
 }
 
 .player-icon {
-  border: 2px solid rgba(255, 255, 255 .6);
   width: 60px;
-  padding: 10px;
+  padding: 5px;
+  margin: 2px;
   transition: 0.4s;
 }
 
 .player-icon:hover {
   cursor: pointer;
+  border: 2px solid black;
+  background-color: white;
 }
 
-.dropdown-content {
-  display: none;
-}
-
-.selected {
-  cursor: pointer;
-  background-color: blue;
-}
-
-#visibleOne {
-  /* border: 3px solid black; */
-  border-radius: 15px;
+.chosen-icon:hover {
+  cursor: default;
+  border: 0;
+  background-color: inherit;
 }
 
 /* #visibleTwo {
@@ -137,12 +160,12 @@ section {
 
 .dropdown-content {
   display: none;
-}
-
-.selected:hover .dropdown-content {
-  display: block;
 } */
 
+/* .selected:hover .dropdown-content {
+  display: block;
+}
+ */
 
 /* GAME BOARD */
 .gameboard {
