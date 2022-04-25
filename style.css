@@ -64,6 +64,29 @@ section {
   align-self: flex-start;
 }
 
+button {
+  align-content: center;
+  font-family: "hujan";
+  padding: 10px;
+  position: fixed;
+  top: 500px;
+  border-style: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  outline: none;
+}
+
+button:hover {
+  background-color: rgb(174 213 128);
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #a1bd80;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
 .game-component-container {
   display: flex;
   justify-content: space-between;

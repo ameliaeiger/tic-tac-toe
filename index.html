@@ -13,7 +13,7 @@
     <h2 class="turn-tracker" id="turn-tracker">Go Player One!</h2>
     <div class="game-component-container">
       <section class="column player-one">
-        <h3>Choose your character:</h3>
+        <h3 id="setup-text-one">Choose your character:</h3>
         <div class="dropdown one" id="dropdown-one">
           <img class="player-icon dropdown-content-one" src="assets/peebs.svg">
           <img class="player-icon dropdown-content-one" src="assets/marceline.svg">
@@ -22,7 +22,7 @@
           <img class="player-icon dropdown-content-one" src="assets/lumpy.svg">
         </div>
         <button id="submit-one">Ready!</button>
-        <h3></h3>
+        <h3 class="hidden" id="player-one-text">Player One</h3>
       </section>
       <section class="gameboard" id="gameboard">
         <div class="square num0" id="0"></div>
@@ -36,7 +36,7 @@
         <div class="square num8" id="8"></div>
       </section>
       <section class="column player-two">
-        <h3>Choose your character:</h3>
+        <h3 id="setup-text-two">Choose your character:</h3>
         <div class="dropdown two" id="dropdown-two">
           <img class="player-icon dropdown-content-two" src="assets/peebs.svg">
           <img class="player-icon dropdown-content-two" src="assets/marceline.svg">
@@ -45,7 +45,7 @@
           <img class="player-icon dropdown-content-two" src="assets/lumpy.svg">
         </div>
         <button id="submit-two">Ready!</button>
-        <h3></h3>
+        <h3 class="hidden" id="player-two-text">Player Two</h3>
       </section>
     </div>
   </main>

@@ -5,12 +5,13 @@ let turnTracker = document.getElementById("turn-tracker")
 let playerOne = new Player("assets/finn.svg", "One", true);
 let playerTwo = new Player ("assets/jake.svg", "Two", false);
 
-
 // Player One
 let dropdownOne = document.getElementById("dropdown-one");
 let playerOneIcon = document.getElementById("visibleOne");
 let readyPlayerOne = document.getElementById("submit-one");
-let playerOneChoices = document.querySelectorAll(".dropdown-content-one")
+let playerOneChoices = document.querySelectorAll(".dropdown-content-one");
+let chooseCharacterTextOne = document.getElementById("setup-text-one");
+let playerOneText = document.getElementById("player-one-text");
 
 
 //Player Two
@@ -18,6 +19,8 @@ let playerTwoIcon = document.getElementById("visibleTwo")
 let dropdownTwo = document.getElementById("dropdown-two");
 let playerTwoChoices = document.querySelectorAll(".dropdown-content-two");
 let readyPlayerTwo = document.getElementById("submit-two");
+let chooseCharacterTextTwo = document.getElementById("setup-text-two");
+let playerTwoText = document.getElementById("player-two-text");
 
 let icons = [
   "assets/peebs.svg",
@@ -124,11 +127,18 @@ function submitCharacterSelection(){
   if (event.target.id == "submit-one"){
     for (let i=0; i<playerOneChoices.length; i++){
       playerOneChoices[i].classList.add("hidden")
+      readyPlayerOne.classList.add("hidden")
+      chooseCharacterTextOne.classList.add("hidden")
+      playerOneText.classList.remove("hidden")
+
     }
     playerOneIcon.classList.add("chosen-icon")
   } else if (event.target.id == "submit-two"){
     for (let i=0; i<playerTwoChoices.length; i++){
       playerTwoChoices[i].classList.add("hidden")
+      readyPlayerTwo.classList.add("hidden")
+      chooseCharacterTextTwo.classList.add("hidden")
+      playerTwoText.classList.remove("hidden")
     }
     playerTwoIcon.classList.add("chosen-icon")
   }
