@@ -8,10 +8,12 @@
   <body>
     <header>
       <h1>TIC TAC TOE TIME!</h1>
-      <h2 class="turn-tracker" id="turn-tracker">Go Player One!</h2>
     </header>
     <main>
+    <h2 class="turn-tracker" id="turn-tracker">Go Player One!</h2>
+    <div class="game-component-container">
       <section class="column player-one">
+        <img src="assets/finn.svg">
         <h3>Player One</h3>
       </section>
       <section class="gameboard" id="gameboard">
@@ -26,9 +28,11 @@
         <div class="square num8" id="8"></div>
       </section>
       <section class="column player-two">
+        <img src="assets/jake.svg">
         <h3>Player Two</h3>
       </section>
-    </main>
+    </div>
+  </main>
   <script src="game.js"></script>
   <script src="player.js"></script>
 	<script src="main.js"></script>
