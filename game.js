@@ -2,7 +2,7 @@ class Game {
   constructor(){
     this.playerOne = new Player ("assets/finn.svg", "One", true);
     this.playerTwo = new Player ("assets/jake.svg", "Two", false);
-    this.nextTurn = this.playerTwo;
+    this.nextPlayer = this.playerTwo;
     this.currentPlayer = this.playerOne;
     this.turns = 0;
     this.winner = "";
@@ -20,25 +20,18 @@ class Game {
   alternateTurn(){
     this.turns += 1
     if (this.turns == 9){
-      turnTracker.innerText = "DRAW"
-      this.resetGame()
-      setTimeout(renderDisplay, 1000)
-      setTimeout(clearBoard, 1000)
+      renderDraw()
     } else if (this.winner){
+      this.currentPlayer.isTurn = false;
+      this.nextPlayer.isTurn = true;
+      this.findTurn()
       renderDisplay()
       this.resetGame()
-    } else if (this.playerOne.isTurn == true){
-      this.playerOne.isTurn = false;
-      this.playerTwo.isTurn = true;
-      this.nextTurn = "Player Two";
-      this.currentPlayer = this.playerTwo;
-      renderDisplay();
-    } else if (this.playerTwo.isTurn == true){
-      this.playerOne.isTurn = true;
-      this.playerTwo.isTurn = false;
-      this.nextTurn = "Player One";
-      this.currentPlayer = this.playerOne;
-      renderDisplay();
+    } else {
+      this.currentPlayer.isTurn = false;
+      this.nextPlayer.isTurn = true;
+      this.findTurn()
+      renderDisplay()
     }
   }
   checkWinner(){
@@ -47,10 +40,9 @@ class Game {
         this.winner = this.currentPlayer.name
         this.currentPlayer.addPoint()
         renderDisplay()
-        this.resetGame()
-        setTimeout(toggleShowWinner, 1500)
-        setTimeout(toggleShowWinner, 5000)
-        setTimeout(clearBoard, 2000)
+        // setTimeout(toggleShowWinner, 1500)
+        // setTimeout(toggleShowWinner, 5000)
+        // setTimeout(clearBoard, 2000)
         renderDisplay()
     }
   }
@@ -62,5 +54,14 @@ class Game {
   }
   clearWinner(){
     this.winner = ""
+  }
+  findTurn(){
+      if (this.playerOne.isTurn){
+        this.currentPlayer = this.playerOne
+        this.nextPlayer = this.playerTwo
+      } else {
+        this.currentPlayer = this.playerTwo
+        this.nextPlayer = this.playerOne
     }
+  }
 }

@@ -179,19 +179,26 @@ function renderDisplay(){
   playerTwoScoreBoard.innerText = game.playerTwo.score;
   if (game.winner){
     turnTracker.innerText = `WE HAVE A WINNER...`
+    setTimeout(toggleShowWinner, 1500)
+    setTimeout(toggleShowWinner, 5000)
+    setTimeout(clearBoard, 2000)
   } else {
-    turnTracker.innerText = `It's ${game.nextTurn}'s turn!`;
+    turnTracker.innerText = `It's Player ${game.nextPlayer.name}'s turn!`;
   }
 }
 
 function renderDraw(){
   turnTracker.innerText = "IT'S A DRAW!"
+  game.resetGame()
+  setTimeout(renderDisplay, 1000)
+  setTimeout(clearBoard, 1000)
 }
 //SHOWRESULT
 function toggleShowWinner(){
   if (winScreen.classList.contains("hidden")){
     winScreen.classList.remove("hidden")
     winText.classList.remove("hidden")
+    console.log(game.winner)
     winText.innerText = `Player ${game.winner} Wins!`
     game.clearWinner()
   } else {
