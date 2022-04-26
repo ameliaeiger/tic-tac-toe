@@ -4,6 +4,7 @@ let gameBoard = document.getElementById("gameboard");
 let turnTracker = document.getElementById("turn-tracker");
 let winScreen = document.getElementById("win-screen");
 let winText = document.getElementById("win-text");
+let squares = document.querySelectorAll(".square")
 
 // Player One
 let dropdownOne = document.getElementById("dropdown-one");
@@ -173,25 +174,20 @@ function handleClick(){
       game.alternateTurn()
     }
     } else {
-    console.log("seat's taken!")
+    return
     }
   }
 }
 
-let squares = document.querySelectorAll(".square")
-
-
-function displayTurn(){
-  turnTracker.innerText = `It's ${game.nextTurn}'s turn!`
-}
-
-function displayPoint(winner){
+function renderDisplay(){
   playerOneScoreBoard.innerText = game.playerOne.score;
   playerTwoScoreBoard.innerText = game.playerTwo.score;
-}
+  if (game.winner){
+    turnTracker.innerText = `WE HAVE A WINNER...`
+  } else {
+    turnTracker.innerText = `It's ${game.nextTurn}'s turn!`;
+  }
 
-function toggleDisplayBanner(){
-  turnTracker.innerText = `WE HAVE A WINNER...`
 }
 
 function toggleShowWinner(){
@@ -211,7 +207,7 @@ function clearBoard(){
   for (let i=0; i < squares.length; i++){
     squares[i].innerHTML = ""
   }
-  displayTurn()
+  renderDisplay()
 }
 
 function submitCharacterSelection(){

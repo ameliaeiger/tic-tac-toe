@@ -2,8 +2,6 @@ class Game {
   constructor(){
     this.playerOne = new Player ("assets/finn.svg", "One", true);
     this.playerTwo = new Player ("assets/jake.svg", "Two", false);
-    this.playerOneScore = this.playerOne.score;
-    this.playerTwoScore = this.playerTwo.score;
     this.nextTurn = this.playerTwo;
     this.currentPlayer = this.playerOne;
     this.turns = 0;
@@ -26,21 +24,21 @@ class Game {
   }
   alternateTurn(){
     if (this.winner){
-      toggleDisplayBanner()
+      renderDisplay()
     } else if (this.playerOne.isTurn == true){
       this.playerOne.isTurn = false;
       this.playerTwo.isTurn = true;
       this.nextTurn = "Player Two";
       this.currentPlayer = this.playerTwo;
       this.turns += 1;
-      displayTurn();
+      renderDisplay();
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
       this.nextTurn = "Player One";
       this.currentPlayer = this.playerOne;
       this.turns += 1;
-      displayTurn();
+      renderDisplay();
     }
   }
   checkWinner(){
@@ -53,20 +51,16 @@ class Game {
         this.winner = this.currentPlayer.name
         this.round += 1
         this.currentPlayer.addPoint()
-        displayPoint(this.currentPlayer.name)
+        renderDisplay()
         this.resetGame()
         setTimeout(toggleShowWinner, 1500)
         setTimeout(toggleShowWinner, 5000)
         setTimeout(clearBoard, 2000)
-        displayTurn()
+        renderDisplay()
       }
     }
   }
 }
-checkScore() {
-    console.log(this.playerOne.score)
-    console.log(this.playerTwo.score)
-  }
   resetGame(){
       this.playerOne.moves = []
       this.playerTwo.moves = []
