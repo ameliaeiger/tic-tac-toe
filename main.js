@@ -187,6 +187,7 @@ function renderDisplay(){
     setTimeout(toggleWinScreen, 1500)
     setTimeout(toggleWinScreen, 5000)
     setTimeout(clearBoard, 2000)
+    game.findStartRound();
   } else {
     turnTracker.innerText = `It's Player ${game.currentPlayer.name}'s turn!`;
   }
@@ -205,7 +206,6 @@ function toggleWinScreen(){
   winText.innerText = `Player ${game.winner} Wins!`
   game.winner = ""
 } else {
-  game.alternateTurn();
   game.resetGame();
   toggleHidden(winScreen);
   toggleHidden(winText);
