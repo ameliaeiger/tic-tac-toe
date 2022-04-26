@@ -159,14 +159,14 @@ dropdownTwo.addEventListener("click", changeIcon);
 // FUNCTIONS AND EVENT HANDLERS
 
 function handleClick() {
-  if (makeMove()) {
+  if (insertIconToDom()) {
     renderDisplay()
   } else {
   game.alternateTurn();
   }
 }
 
-function makeMove(){
+function insertIconToDom(){
     if (event.target.classList.contains("square")){
       let chosenSquare = event.target.closest("div")
       if (!chosenSquare.innerHTML){
@@ -184,8 +184,8 @@ function renderDisplay(){
   playerTwoScoreBoard.innerText = game.playerTwo.score;
   if (game.winner){
     turnTracker.innerText = `WE HAVE A WINNER...`
-    setTimeout(toggleShowWinner, 1500)
-    setTimeout(toggleShowWinner, 5000)
+    setTimeout(toggleWinScreen, 1500)
+    setTimeout(toggleWinScreen, 5000)
     setTimeout(clearBoard, 2000)
   } else {
     turnTracker.innerText = `It's Player ${game.currentPlayer.name}'s turn!`;
@@ -197,20 +197,21 @@ function renderDraw(){
   setTimeout(renderDisplay, 2000)
   setTimeout(clearBoard, 1000)
 }
-//SHOWRESULT
-function toggleShowWinner(){
+
+function toggleWinScreen(){
   if (winScreen.classList.contains("hidden")){
-    winScreen.classList.remove("hidden")
-    winText.classList.remove("hidden")
-    winText.innerText = `Player ${game.winner} Wins!`
-    game.winner = ""
-  } else {
-    game.alternateTurn()
-    game.resetGame();
-    winScreen.classList.add("hidden")
-    winText.classList.add("hidden")
+  toggleHidden(winScreen)
+  toggleHidden(winText)
+  winText.innerText = `Player ${game.winner} Wins!`
+  game.winner = ""
+} else {
+  game.alternateTurn();
+  game.resetGame();
+  toggleHidden(winScreen);
+  toggleHidden(winText);
   }
 }
+
 
 function clearBoard(){
   for (let i=0; i < squares.length; i++){
@@ -239,14 +240,6 @@ function submitCharacterSelection(){
   }
 }
 
-function toggleHidden(elementName){
-  if (elementName.classList.contains("hidden")){
-    elementName.classList.remove("hidden")
-  } else {
-    elementName.classList.add("hidden")
-  }
-}
-
 function changeIcon(){
   if (event.target.classList.contains("dropdown-content-one")){
     if (event.target.src != game.playerTwo.id){
@@ -260,5 +253,13 @@ function changeIcon(){
     event.target.src = game.playerTwo.displayIcon.src
     game.playerTwo.selectIcon()
     }
+  }
+}
+
+function toggleHidden(elementName){
+  if (elementName.classList.contains("hidden")){
+    elementName.classList.remove("hidden")
+  } else {
+    elementName.classList.add("hidden")
   }
 }
