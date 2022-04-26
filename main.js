@@ -1,9 +1,9 @@
 // GLOBALS
+let game = new Game();
 let gameBoard = document.getElementById("gameboard");
-let turnTracker = document.getElementById("turn-tracker")
-
-let playerOne = new Player("assets/finn.svg", "One", true);
-let playerTwo = new Player ("assets/jake.svg", "Two", false);
+let turnTracker = document.getElementById("turn-tracker");
+let winScreen = document.getElementById("win-screen");
+let winText = document.getElementById("win-text");
 
 // Player One
 let dropdownOne = document.getElementById("dropdown-one");
@@ -12,15 +12,16 @@ let readyPlayerOne = document.getElementById("submit-one");
 let playerOneChoices = document.querySelectorAll(".dropdown-content-one");
 let chooseCharacterTextOne = document.getElementById("setup-text-one");
 let playerOneText = document.getElementById("player-one-text");
-
+let playerOneScoreBoard = document.getElementById("one-score");
 
 //Player Two
-let playerTwoIcon = document.getElementById("visibleTwo")
+let playerTwoIcon = document.getElementById("visibleTwo");
 let dropdownTwo = document.getElementById("dropdown-two");
 let playerTwoChoices = document.querySelectorAll(".dropdown-content-two");
 let readyPlayerTwo = document.getElementById("submit-two");
 let chooseCharacterTextTwo = document.getElementById("setup-text-two");
 let playerTwoText = document.getElementById("player-two-text");
+let playerTwoScoreBoard = document.getElementById("two-score");
 
 let icons = [
   "assets/peebs.svg",
@@ -28,7 +29,7 @@ let icons = [
   "assets/finn.svg",
   "assets/ice-king.svg",
   "assets/lumpy.svg",
-]
+];
 
 let quotes = [
   "I'm killing you with ice cream!",
@@ -40,8 +41,6 @@ let quotes = [
   "Jake, we're going to college!",
   "I can't help it, man! I'm all about stupid!",
   "Everything small is just a small version of something big! I understand everything!",
-  "I'm better than okay. I know exactly how to impress the princess.",
-  "I'm going to blow your minds.",
   "A 4-dimensional bubble casts a 3-dimensional shadow! It is beyond comprehension! Beyond space! Beyond time!",
   "You're beautiful on the inside like... your brain and stuff.",
   "Yes! And their brains are releasing adrenaline, dopamine, even dimethyltryptamine from the pineal gland! This has serious educational value! Thanatophobia and this N.D.E. is giving us euphoric altered awareness! Don't you see, Princess? We were all born to die!",
@@ -67,7 +66,6 @@ let quotes = [
   "That's bunk! Right, Pree-bos?",
   "Yeah, like pranking him up his face!",
   "Easy as childbirth.",
-  "I'd rather sanctify PB's lips.",
   "I'll get your kid back, toy.",
   "Aw, dude! I broke my stems!",
   "Yo! Is everyone in church? Worshiping Glob?",
@@ -119,8 +117,6 @@ let quotes = [
   "That road you're on leads to nowhere.",
   "You wanna join my primitive noise band?",
   "Hello? Oh! Is that the machine part that I ordered?",
-  "Ac-cep-tance.",
-  "O-ho-ho, was it? Then how do you explain tomorrow's newspaper?",
   "Jake. A crime has been committed. We must find the criminal.",
   "What the-?! Jake! What's with all the turning into stuff today?",
   "Roll the dice, you pay the price.",
@@ -149,45 +145,32 @@ let quotes = [
   "Weirdo.",
   "My vault feels lighter.",
   "Yeah, it's pretty math... you psychopath!",
-]
+];
 
 // EVENT LISTENERS
 
-gameBoard.addEventListener("click", handleClick)
+gameBoard.addEventListener("click", handleClick);
 readyPlayerOne.addEventListener("click", submitCharacterSelection);
 readyPlayerTwo.addEventListener("click", submitCharacterSelection);
 dropdownOne.addEventListener("click", changeIcon);
 dropdownTwo.addEventListener("click", changeIcon);
 
-
-
-
 // FUNCTIONS AND EVENT HANDLERS
-
-let finn = new Game(playerOne, playerTwo)
-
-function instantiatePlayers() {
-  let playerOne = new Player("assets/finn.svg", "One", true);
-  let playerTwo = new Player ("O", "Two", false);
-}
-
 
 function handleClick(){
   if (event.target.classList.contains("square")){
     let chosenSquare = event.target.closest("div")
     if (!chosenSquare.innerHTML){
-    if (playerOne.isTurn){
-      // chosenSquare.innerHTML = playerOne.id
-      chosenSquare.innerHTML = `<img src=${playerOne.id}>`
-      finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      finn.checkWinner();
-      finn.alternateTurn();
+    if (game.playerOne.isTurn){
+      chosenSquare.innerHTML = `<img src=${game.playerOne.id}>`
+      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+      game.checkWinner();
+      game.alternateTurn();
     } else {
-      console.log("Player two")
-      chosenSquare.innerHTML = `<img src=${playerTwo.id}>`
-      finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      finn.checkWinner()
-      finn.alternateTurn()
+      chosenSquare.innerHTML = `<img src=${game.playerTwo.id}>`
+      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+      game.checkWinner()
+      game.alternateTurn()
     }
     } else {
     console.log("seat's taken!")
@@ -197,43 +180,29 @@ function handleClick(){
 
 let squares = document.querySelectorAll(".square")
 //Put in game.js, playerMove goes in player.js
-let winConditions = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [6, 4, 2],
-]
-
-
-
-// function checkWinner(){
-//   for (let i =0; i < winConditions.length; i++){
-//     if(finn.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
-//       finn.currentPlayer.addPoint()
-//       console.log("win!")
-//       finn.resetGame()
-//     }
-//   }
-// }
-
-
-
+// let winConditions = [
+//   [0, 1, 2],
+//   [3, 4, 5],
+//   [6, 7, 8],
+//   [0, 3, 6],
+//   [1, 4, 7],
+//   [2, 5, 8],
+//   [0, 4, 8],
+//   [6, 4, 2],
+// ]
+//
 // MOve to class
 // function checkWinner(){
-//   if ((squares[0].innerHTML == finn.currentPlayer.id) && (squares[1].innerHTML == finn.currentPlayer.id) && (squares[2].innerHTML == finn.currentPlayer.id) ||
-//       (squares[3].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[5].innerHTML == finn.currentPlayer.id) ||
-//       (squares[6].innerHTML == finn.currentPlayer.id) && (squares[7].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[0].innerHTML == finn.currentPlayer.id) && (squares[3].innerHTML == finn.currentPlayer.id) && (squares[6].innerHTML == finn.currentPlayer.id) ||
-//       (squares[1].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[7].innerHTML == finn.currentPlayer.id) ||
-//       (squares[2].innerHTML == finn.currentPlayer.id) && (squares[5].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[0].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[6].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[2].innerHTML == finn.currentPlayer.id)) {
-//     console.log(finn.currentPlayer.id + " wins!")
-//     finn.currentPlayer.addPoint()
+//   if ((squares[0].innerHTML == game.currentPlayer.id) && (squares[1].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id) ||
+//       (squares[3].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) ||
+//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[3].innerHTML == game.currentPlayer.id) && (squares[6].innerHTML == game.currentPlayer.id) ||
+//       (squares[1].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) ||
+//       (squares[2].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id)) {
+//     console.log(game.currentPlayer.id + " wins!")
+//     game.currentPlayer.addPoint()
 //
 //   } else {
 //     console.log("draw!")
@@ -241,7 +210,36 @@ let winConditions = [
 // }
 
 function displayTurn(){
-  turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
+  turnTracker.innerText = `It's ${game.nextTurn}'s turn!`
+}
+
+function displayPoint(winner){
+  playerOneScoreBoard.innerText = game.playerOne.score;
+  playerTwoScoreBoard.innerText = game.playerTwo.score;
+}
+
+function toggleDisplayBanner(){
+  turnTracker.innerText = `WE HAVE A WINNER...`
+}
+
+function toggleShowWinner(){
+  if (winScreen.classList.contains("hidden")){
+    winScreen.classList.remove("hidden")
+    winText.innerText = `Player ${game.winner} Wins!`
+    winText.classList.remove("hidden")
+    game.clearWinner()
+  } else {
+    game.alternateTurn()
+    winScreen.classList.add("hidden")
+    winText.classList.add("hidden")
+  }
+}
+
+function clearBoard(){
+  for (let i=0; i < squares.length; i++){
+    squares[i].innerHTML = ""
+  }
+  displayTurn()
 }
 
 function submitCharacterSelection(){
@@ -251,7 +249,6 @@ function submitCharacterSelection(){
       readyPlayerOne.classList.add("hidden")
       chooseCharacterTextOne.classList.add("hidden")
       playerOneText.classList.remove("hidden")
-
     }
     playerOneIcon.classList.add("chosen-icon")
   } else if (event.target.id == "submit-two"){
@@ -265,27 +262,18 @@ function submitCharacterSelection(){
   }
 }
 
-function removeSelectedClass(){
-  if (event.target.classList.contains("player-icon")){
-    event.target.classList.remove("visible")
-  }
-}
-
 function changeIcon(){
   if (event.target.classList.contains("dropdown-content-one")){
-    finn.playerOne.id = event.target.src
-    event.target.src = playerOneIcon.src
-    finn.playerOne.selectIcon()
+    if (event.target.src != game.playerTwo.id){
+    game.playerOne.id = event.target.src
+    event.target.src = game.playerOne.displayIcon.src
+    game.playerOne.selectIcon()
+    }
   } else if (event.target.classList.contains("dropdown-content-two")){
-    console.log("here line 145")
-    finn.playerTwo.id = event.target.src
-    event.target.src = playerTwoIcon.src
-    finn.playerTwo.selectIcon()
+    if (event.target.src != game.playerOne.id){
+    game.playerTwo.id = event.target.src
+    event.target.src = game.playerTwo.displayIcon.src
+    game.playerTwo.selectIcon()
+    }
   }
 }
-
-// function displayIconChoices(){
-//   for (let i=0; i < icons.length; i++){
-//     allChoices[i].src = icons[i]
-//   }
-// }

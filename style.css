@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(168,236,255);
+  margin: 0;
 }
 
 body, header, section {
@@ -65,11 +66,11 @@ section {
 }
 
 button {
+  display: flex;
+  flex-direction: flex-end;
   align-content: center;
   font-family: "hujan";
   padding: 10px;
-  position: fixed;
-  top: 500px;
   border-style: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
@@ -87,12 +88,6 @@ button:active {
   transform: translateY(3px);
 }
 
-.game-component-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 /* COLUMNS */
 .column {
   min-width: 275px;
@@ -104,7 +99,7 @@ button:active {
   padding-top: 25px;
 }
 
-/* CHARACTER SELECT */
+/* CHARACTER SELECT DROPDOWN */
 .dropdown {
   display: flex;
 }
@@ -144,30 +139,14 @@ display: none!important;
   background-color: inherit;
 }
 
-/* #visibleTwo {
-  border: 3px solid black;
-  border-radius: 15px;
-} */
-
-/* .player-icon.selected {
-  width: 50px;
-  transition: width .5s;
-}
-
-.selected:hover {
-  width: 80px;
-}
-
-.dropdown-content {
-  display: none;
-} */
-
-/* .selected:hover .dropdown-content {
-  display: block;
-}
- */
-
 /* GAME BOARD */
+
+.game-component-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .gameboard {
   display: grid;
   grid-template-columns: 150px 150px 150px;
@@ -186,7 +165,6 @@ display: none!important;
   border: 5px solid #a8ecff;
 }
 
-
 /* MAKE NTH CHILDREN? */
 .num0, .num1, .num2 {
   border-top: 0;
@@ -202,4 +180,29 @@ display: none!important;
 
 .num2, .num5, .num8 {
   border-right: 0;
+}
+
+/* WIN SCREEN */
+
+.win-screen {
+  position: fixed;
+  top: 0px;
+  min-width: 720px;
+  min-height: 720px;
+  background-color: white;
+  border: 50px solid #f0fff0;
+  margin: 0;
+}
+
+.win-text {
+  position: fixed;
+  bottom: 200px;
+  padding: 25px;
+  font-size: 100px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 25px;
+}
+
+img {
+  border-radius: 25px;
 }
