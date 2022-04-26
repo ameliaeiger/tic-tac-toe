@@ -40,7 +40,7 @@ class Game {
      this.resetGame()
    } else {
      for (let i =0; i < winConditions.length; i++){
-      if(this.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
+      if(this.currentPlayer.moves.includes(winConditions[i][0]) && game.currentPlayer.moves.includes(winConditions[i][1]) && game.currentPlayer.moves.includes(winConditions[i][2])){
         this.winner = this.currentPlayer.name
         this.round += 1
         this.currentPlayer.addPoint()
@@ -58,14 +58,6 @@ checkScore() {
     console.log(this.playerOne.score)
     console.log(this.playerTwo.score)
   }
-  // generateBoard() {
-  //   for (let i=0; i < 9; i++) {
-  //     let square = document.createElement("div");
-  //     square.className = `square num${i}`;
-  //     square.id = i;
-  //     document.getElementById("gameboard").appendChild(square);
-  //   }
-  // }
   resetGame(){
       this.playerOne.moves = []
       this.playerTwo.moves = []
@@ -75,10 +67,3 @@ checkScore() {
     this.winner = ""
   }
 }
-
-
-// Two player instances X
-// Scorekeeper
-// Turn tracker
-// Check win conditions
-// Game reset

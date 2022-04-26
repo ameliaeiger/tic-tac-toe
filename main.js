@@ -65,7 +65,6 @@ let quotes = [
   "That's bunk! Right, Pree-bos?",
   "Yeah, like pranking him up his face!",
   "Easy as childbirth.",
-  "I'd rather sanctify PB's lips.",
   "I'll get your kid back, toy.",
   "Aw, dude! I broke my stems!",
   "Yo! Is everyone in church? Worshiping Glob?",
@@ -117,8 +116,6 @@ let quotes = [
   "That road you're on leads to nowhere.",
   "You wanna join my primitive noise band?",
   "Hello? Oh! Is that the machine part that I ordered?",
-  "Ac-cep-tance.",
-  "O-ho-ho, was it? Then how do you explain tomorrow's newspaper?",
   "Jake. A crime has been committed. We must find the criminal.",
   "What the-?! Jake! What's with all the turning into stuff today?",
   "Roll the dice, you pay the price.",
@@ -151,7 +148,7 @@ let quotes = [
 
 // EVENT LISTENERS
 
-gameBoard.addEventListener("click", handleClick)
+gameBoard.addEventListener("click", handleClick);
 readyPlayerOne.addEventListener("click", submitCharacterSelection);
 readyPlayerTwo.addEventListener("click", submitCharacterSelection);
 dropdownOne.addEventListener("click", changeIcon);
@@ -162,28 +159,22 @@ dropdownTwo.addEventListener("click", changeIcon);
 
 // FUNCTIONS AND EVENT HANDLERS
 
-let finn = new Game()
-
-// function instantiatePlayers() {
-//   let playerOne = new Player("assets/finn.svg", "One", true);
-//   let playerTwo = new Player ("O", "Two", false);
-// }
-
+let game = new Game()
 
 function handleClick(){
   if (event.target.classList.contains("square")){
     let chosenSquare = event.target.closest("div")
     if (!chosenSquare.innerHTML){
-    if (finn.playerOne.isTurn){
-      chosenSquare.innerHTML = `<img src=${finn.playerOne.id}>`
-      finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      finn.checkWinner();
-      finn.alternateTurn();
+    if (game.playerOne.isTurn){
+      chosenSquare.innerHTML = `<img src=${game.playerOne.id}>`
+      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+      game.checkWinner();
+      game.alternateTurn();
     } else {
-      chosenSquare.innerHTML = `<img src=${finn.playerTwo.id}>`
-      finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      finn.checkWinner()
-      finn.alternateTurn()
+      chosenSquare.innerHTML = `<img src=${game.playerTwo.id}>`
+      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+      game.checkWinner()
+      game.alternateTurn()
     }
     } else {
     console.log("seat's taken!")
@@ -206,16 +197,16 @@ let winConditions = [
 
 // MOve to class
 // function checkWinner(){
-//   if ((squares[0].innerHTML == finn.currentPlayer.id) && (squares[1].innerHTML == finn.currentPlayer.id) && (squares[2].innerHTML == finn.currentPlayer.id) ||
-//       (squares[3].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[5].innerHTML == finn.currentPlayer.id) ||
-//       (squares[6].innerHTML == finn.currentPlayer.id) && (squares[7].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[0].innerHTML == finn.currentPlayer.id) && (squares[3].innerHTML == finn.currentPlayer.id) && (squares[6].innerHTML == finn.currentPlayer.id) ||
-//       (squares[1].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[7].innerHTML == finn.currentPlayer.id) ||
-//       (squares[2].innerHTML == finn.currentPlayer.id) && (squares[5].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[0].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[8].innerHTML == finn.currentPlayer.id) ||
-//       (squares[6].innerHTML == finn.currentPlayer.id) && (squares[4].innerHTML == finn.currentPlayer.id) && (squares[2].innerHTML == finn.currentPlayer.id)) {
-//     console.log(finn.currentPlayer.id + " wins!")
-//     finn.currentPlayer.addPoint()
+//   if ((squares[0].innerHTML == game.currentPlayer.id) && (squares[1].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id) ||
+//       (squares[3].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) ||
+//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[3].innerHTML == game.currentPlayer.id) && (squares[6].innerHTML == game.currentPlayer.id) ||
+//       (squares[1].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) ||
+//       (squares[2].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
+//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id)) {
+//     console.log(game.currentPlayer.id + " wins!")
+//     game.currentPlayer.addPoint()
 //
 //   } else {
 //     console.log("draw!")
@@ -223,12 +214,12 @@ let winConditions = [
 // }
 
 function displayTurn(){
-  turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
+  turnTracker.innerText = `It's ${game.nextTurn}'s turn!`
 }
 
 function displayPoint(winner){
-  playerOneScoreBoard.innerText = finn.playerOne.score;
-  playerTwoScoreBoard.innerText = finn.playerTwo.score;
+  playerOneScoreBoard.innerText = game.playerOne.score;
+  playerTwoScoreBoard.innerText = game.playerTwo.score;
 }
 
 function toggleDisplayBanner(){
@@ -238,11 +229,11 @@ function toggleDisplayBanner(){
 function toggleShowWinner(){
   if (winScreen.classList.contains("hidden")){
     winScreen.classList.remove("hidden")
-    winText.innerText = `Player ${finn.winner} Wins!`
+    winText.innerText = `Player ${game.winner} Wins!`
     winText.classList.remove("hidden")
-    finn.clearWinner()
+    game.clearWinner()
   } else {
-    finn.alternateTurn()
+    game.alternateTurn()
     winScreen.classList.add("hidden")
     winText.classList.add("hidden")
   }
@@ -283,12 +274,12 @@ function removeSelectedClass(){
 
 function changeIcon(){
   if (event.target.classList.contains("dropdown-content-one")){
-    finn.playerOne.id = event.target.src
-    event.target.src = finn.playerOne.displayIcon.src
-    finn.playerOne.selectIcon()
+    game.playerOne.id = event.target.src
+    event.target.src = game.playerOne.displayIcon.src
+    game.playerOne.selectIcon()
   } else if (event.target.classList.contains("dropdown-content-two")){
-    finn.playerTwo.id = event.target.src
-    event.target.src = finn.playerTwo.displayIcon.src
-    finn.playerTwo.selectIcon()
+    game.playerTwo.id = event.target.src
+    event.target.src = game.playerTwo.displayIcon.src
+    game.playerTwo.selectIcon()
   }
 }
