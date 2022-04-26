@@ -194,7 +194,7 @@ function renderDisplay(){
 
 function renderDraw(){
   turnTracker.innerText = "IT'S A DRAW!"
-  setTimeout(renderDisplay, 1000)
+  setTimeout(renderDisplay, 2000)
   setTimeout(clearBoard, 1000)
 }
 //SHOWRESULT
@@ -222,20 +222,28 @@ function clearBoard(){
 function submitCharacterSelection(){
   if (event.target.id == "submit-one"){
     for (let i=0; i<playerOneChoices.length; i++){
-      playerOneChoices[i].classList.add("hidden")
-      readyPlayerOne.classList.add("hidden")
-      chooseCharacterTextOne.classList.add("hidden")
-      playerOneText.classList.remove("hidden")
+    toggleHidden(playerOneChoices[i])
     }
+    toggleHidden(readyPlayerOne)
+    toggleHidden(chooseCharacterTextOne)
+    toggleHidden(playerOneText)
     playerOneIcon.classList.add("chosen-icon")
   } else if (event.target.id == "submit-two"){
     for (let i=0; i<playerTwoChoices.length; i++){
-      playerTwoChoices[i].classList.add("hidden")
-      readyPlayerTwo.classList.add("hidden")
-      chooseCharacterTextTwo.classList.add("hidden")
-      playerTwoText.classList.remove("hidden")
+      toggleHidden(playerTwoChoices[i], "hidden")
     }
+    toggleHidden(readyPlayerTwo, "hidden")
+    toggleHidden(chooseCharacterTextTwo, "hidden")
+    toggleHidden(playerTwoText)
     playerTwoIcon.classList.add("chosen-icon")
+  }
+}
+
+function toggleHidden(elementName){
+  if (elementName.classList.contains("hidden")){
+    elementName.classList.remove("hidden")
+  } else {
+    elementName.classList.add("hidden")
   }
 }
 
