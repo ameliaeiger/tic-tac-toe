@@ -52,6 +52,8 @@ function insertIconToDom(){
           return true
         }
       }
+  } else if (chosenSquare.innerHTML){
+    console.log("seat's taken!")
   }
 }
 
@@ -70,9 +72,11 @@ function renderDisplay(){
 }
 
 function renderDraw(){
+  console.log("it happened")
   turnTracker.innerText = "IT'S A DRAW!"
-  setTimeout(renderDisplay, 2000)
   setTimeout(clearBoard, 1000)
+  setTimeout(game.resetGame, 1000)
+
 }
 
 function toggleWinScreen(){
