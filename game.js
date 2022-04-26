@@ -2,12 +2,10 @@ class Game {
   constructor(){
     this.playerOne = new Player ("assets/finn.svg", "One", true);
     this.playerTwo = new Player ("assets/jake.svg", "Two", false);
-    this.playerOneScore = this.playerOne.score;
-    this.playerTwoScore = this.playerTwo.score;
-    this.nextTurn = this.playerTwo;
+    this.nextPlayer = this.playerTwo;
     this.currentPlayer = this.playerOne;
     this.turns = 0;
-    this.round = 1;
+    this.rounds = 1;
     this.winner = "";
     this.winConditions = [
       [0, 1, 2],
@@ -20,59 +18,56 @@ class Game {
       [6, 4, 2],
     ];
   }
-  instantiatePlayer(){
-    let playerOne = new Player("assets/finn.svg", "Player One", true);
-    let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
-  }
   alternateTurn(){
-    if (this.winner){
-      toggleDisplayBanner()
-    } else if (this.playerOne.isTurn == true){
-      this.playerOne.isTurn = false;
-      this.playerTwo.isTurn = true;
-      this.nextTurn = "Player Two";
-      this.currentPlayer = this.playerTwo;
-      this.turns += 1;
-      displayTurn();
+    this.turns += 1
+    if (this.turns == 9){
+      this.rounds += 1
+      renderDraw()
+      // this.findStartRound()
+      // this.resetGame()
+    } else if (this.winner){
+      this.resetGame()
     } else {
-      this.playerOne.isTurn = true;
-      this.playerTwo.isTurn = false;
-      this.nextTurn = "Player One";
-      this.currentPlayer = this.playerOne;
-      this.turns += 1;
-      displayTurn();
+      this.currentPlayer.isTurn = false;
+      this.nextPlayer.isTurn = true;
+      this.findTurn()
+      renderDisplay()
     }
   }
   checkWinner(){
-    if (this.turns == 9 && game.playerOne.moves.length == 5){
-     console.log("draw")
-     this.resetGame()
-   } else {
      for (let i =0; i < this.winConditions.length; i++){
-      if(this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
+      if (this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
         this.winner = this.currentPlayer.name
-        this.round += 1
         this.currentPlayer.addPoint()
-        displayPoint(this.currentPlayer.name)
-        this.resetGame()
-        setTimeout(toggleShowWinner, 1500)
-        setTimeout(toggleShowWinner, 5000)
-        setTimeout(clearBoard, 2000)
-        displayTurn()
-      }
+        this.rounds += 1
+        return true;
     }
   }
 }
-checkScore() {
-    console.log(this.playerOne.score)
-    console.log(this.playerTwo.score)
-  }
   resetGame(){
-      this.playerOne.moves = []
-      this.playerTwo.moves = []
+      game.playerOne.moves = []
+      game.playerTwo.moves = []
       this.turns = 0;
+      game.findStartRound()
+      renderDisplay();
   }
-  clearWinner(){
-    this.winner = ""
+  findTurn(){
+      if (this.playerOne.isTurn){
+        this.currentPlayer = this.playerOne
+        this.nextPlayer = this.playerTwo
+      } else {
+        this.currentPlayer = this.playerTwo
+        this.nextPlayer = this.playerOne
+    }
+  }
+  findStartRound(){
+    if (this.rounds % 2 == 0){
+      this.playerTwo.isTurn = true;
+      this.playerOne.isTurn = false;
+      this.findTurn();
+    } else {
+      this.playerOne.isTurn = true;
+      this.playerTwo.isTurn = false;
+    } this.findTurn();
   }
 }
