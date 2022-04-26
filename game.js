@@ -23,7 +23,8 @@ class Game {
     if (this.turns == 9){
       this.rounds += 1
       renderDraw()
-      this.findTurn()
+      this.findStartRound()
+      this.resetGame()
     } else if (this.winner){
       this.resetGame()
     } else {
@@ -59,11 +60,10 @@ class Game {
     }
   }
   findStartRound(){
-    if ((this.rounds/2) % 1 == 0){
+    if (this.rounds % 2 == 0){
       this.playerTwo.isTurn = true;
       this.playerOne.isTurn = false;
       this.findTurn();
-      console.log(this.currentPlayer, "1")
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
