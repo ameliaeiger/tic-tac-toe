@@ -2,6 +2,8 @@
 
 A Turing School of Software and Design project. Based on the beloved cartoon series Adventure Time.
 
+This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on crafting an efficient data model and connecting it to the DOM.
+
 ## Contributors
 
 [Amelia Eiger](https://github.com/ameliaeiger)
