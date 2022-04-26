@@ -1,31 +1,35 @@
 class Game {
-  constructor(playerOne, playerTwo){
-    this.playerOne = playerOne;
-    this.playerTwo = playerTwo;
+  constructor(){
+    this.playerOne = new Player ("assets/finn.svg", "One", true)
+    this.playerTwo = new Player ("assets/jake.svg", "Two", false)
     this.playerOneScore = this.playerOne.score
     this.playerTwoScore = this.playerTwo.score
     this.board = ""
-    this.nextTurn = playerTwo;
-    this.currentPlayer = playerOne;
+    this.nextTurn = this.playerTwo;
+    this.currentPlayer = this.playerOne;
     this.turns = 0;
+    this.round = 1;
+    this.winner = "";
   }
   instantiatePlayer(){
     let playerOne = new Player("assets/finn.svg", "Player One", true);
     let playerTwo = new Player ("assets/jake.svg", "Player Two", false);
   }
   alternateTurn(){
-    if (this.playerOne.isTurn == true){
+    if (this.winner){
+      toggleDisplayBanner()
+    } else if (this.playerOne.isTurn == true){
       this.playerOne.isTurn = false;
       this.playerTwo.isTurn = true;
       this.nextTurn = "Player Two";
-      this.currentPlayer = playerTwo;
+      this.currentPlayer = this.playerTwo;
       this.turns += 1;
       displayTurn();
     } else {
       this.playerOne.isTurn = true;
       this.playerTwo.isTurn = false;
       this.nextTurn = "Player One";
-      this.currentPlayer = playerOne;
+      this.currentPlayer = this.playerOne;
       this.turns += 1;
       displayTurn();
     }
@@ -37,11 +41,15 @@ class Game {
    } else {
      for (let i =0; i < winConditions.length; i++){
       if(this.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
+        this.winner = this.currentPlayer.name
+        this.round += 1
         this.currentPlayer.addPoint()
-        displayScore()
-        console.log("win!")
+        displayPoint(this.currentPlayer.name)
         this.resetGame()
-        setTimeout(clearBoard, 3000)
+        setTimeout(toggleShowWinner, 1500)
+        setTimeout(toggleShowWinner, 5000)
+        setTimeout(clearBoard, 2000)
+        displayTurn()
       }
     }
   }
@@ -62,6 +70,9 @@ checkScore() {
       this.playerOne.moves = []
       this.playerTwo.moves = []
       this.turns = 0;
+  }
+  clearWinner(){
+    this.winner = ""
   }
 }
 

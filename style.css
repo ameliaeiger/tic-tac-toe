@@ -65,11 +65,11 @@ section {
 }
 
 button {
+  display: flex;
+  flex-direction: flex-end;
   align-content: center;
   font-family: "hujan";
   padding: 10px;
-  position: fixed;
-  top: 500px;
   border-style: none;
   border-radius: 15px;
   box-shadow: 0 5px #999;
@@ -202,4 +202,26 @@ display: none!important;
 
 .num2, .num5, .num8 {
   border-right: 0;
+}
+
+.win-screen {
+  position: fixed;
+  bottom: 50px;
+
+  min-width: 600px;
+  min-height: 600px;
+
+  background-color: white;
+  border: 70px solid white;
+  border-radius: 25px;
+}
+
+.win-text {
+  position: fixed;
+  bottom: 200px;
+
+  padding: 25px;
+  font-size: 100px;
+  background-color: rgba(255, 255, 255, .6);
+  border-radius: 25px;
 }

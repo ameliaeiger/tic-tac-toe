@@ -1,9 +1,8 @@
 // GLOBALS
 let gameBoard = document.getElementById("gameboard");
 let turnTracker = document.getElementById("turn-tracker")
-
-let playerOne = new Player("assets/finn.svg", "One", true);
-let playerTwo = new Player ("assets/jake.svg", "Two", false);
+let winScreen = document.getElementById("win-screen");
+let winText = document.getElementById("win-text");
 
 // Player One
 let dropdownOne = document.getElementById("dropdown-one");
@@ -12,7 +11,7 @@ let readyPlayerOne = document.getElementById("submit-one");
 let playerOneChoices = document.querySelectorAll(".dropdown-content-one");
 let chooseCharacterTextOne = document.getElementById("setup-text-one");
 let playerOneText = document.getElementById("player-one-text");
-
+let playerOneScoreBoard = document.getElementById("one-score");
 
 //Player Two
 let playerTwoIcon = document.getElementById("visibleTwo")
@@ -21,6 +20,7 @@ let playerTwoChoices = document.querySelectorAll(".dropdown-content-two");
 let readyPlayerTwo = document.getElementById("submit-two");
 let chooseCharacterTextTwo = document.getElementById("setup-text-two");
 let playerTwoText = document.getElementById("player-two-text");
+let playerTwoScoreBoard = document.getElementById("two-score");
 
 let icons = [
   "assets/peebs.svg",
@@ -40,8 +40,6 @@ let quotes = [
   "Jake, we're going to college!",
   "I can't help it, man! I'm all about stupid!",
   "Everything small is just a small version of something big! I understand everything!",
-  "I'm better than okay. I know exactly how to impress the princess.",
-  "I'm going to blow your minds.",
   "A 4-dimensional bubble casts a 3-dimensional shadow! It is beyond comprehension! Beyond space! Beyond time!",
   "You're beautiful on the inside like... your brain and stuff.",
   "Yes! And their brains are releasing adrenaline, dopamine, even dimethyltryptamine from the pineal gland! This has serious educational value! Thanatophobia and this N.D.E. is giving us euphoric altered awareness! Don't you see, Princess? We were all born to die!",
@@ -164,25 +162,25 @@ dropdownTwo.addEventListener("click", changeIcon);
 
 // FUNCTIONS AND EVENT HANDLERS
 
-let finn = new Game(playerOne, playerTwo)
+let finn = new Game()
 
-function instantiatePlayers() {
-  let playerOne = new Player("assets/finn.svg", "One", true);
-  let playerTwo = new Player ("O", "Two", false);
-}
+// function instantiatePlayers() {
+//   let playerOne = new Player("assets/finn.svg", "One", true);
+//   let playerTwo = new Player ("O", "Two", false);
+// }
 
 
 function handleClick(){
   if (event.target.classList.contains("square")){
     let chosenSquare = event.target.closest("div")
     if (!chosenSquare.innerHTML){
-    if (playerOne.isTurn){
-      chosenSquare.innerHTML = `<img src=${playerOne.id}>`
+    if (finn.playerOne.isTurn){
+      chosenSquare.innerHTML = `<img src=${finn.playerOne.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       finn.checkWinner();
       finn.alternateTurn();
     } else {
-      chosenSquare.innerHTML = `<img src=${playerTwo.id}>`
+      chosenSquare.innerHTML = `<img src=${finn.playerTwo.id}>`
       finn.currentPlayer.moves.push(parseInt(chosenSquare.id))
       finn.checkWinner()
       finn.alternateTurn()
@@ -206,20 +204,6 @@ let winConditions = [
   [6, 4, 2],
 ]
 
-
-
-// function checkWinner(){
-//   for (let i =0; i < winConditions.length; i++){
-//     if(finn.currentPlayer.moves.includes(winConditions[i][0]) && finn.currentPlayer.moves.includes(winConditions[i][1]) && finn.currentPlayer.moves.includes(winConditions[i][2])){
-//       finn.currentPlayer.addPoint()
-//       console.log("win!")
-//       finn.resetGame()
-//     }
-//   }
-// }
-
-
-
 // MOve to class
 // function checkWinner(){
 //   if ((squares[0].innerHTML == finn.currentPlayer.id) && (squares[1].innerHTML == finn.currentPlayer.id) && (squares[2].innerHTML == finn.currentPlayer.id) ||
@@ -242,18 +226,33 @@ function displayTurn(){
   turnTracker.innerText = `It's ${finn.nextTurn}'s turn!`
 }
 
-let playerOneScoreBoard = document.getElementById("one-score");
-let playerTwoScoreBoard = document.getElementById("two-score");
+function displayPoint(winner){
+  playerOneScoreBoard.innerText = finn.playerOne.score;
+  playerTwoScoreBoard.innerText = finn.playerTwo.score;
+}
 
-function displayScore(){
-  playerOneScoreBoard.innerText = playerOne.score;
-  playerTwoScoreBoard.innerText = playerTwo.score;
+function toggleDisplayBanner(){
+  turnTracker.innerText = `WE HAVE A WINNER...`
+}
+
+function toggleShowWinner(){
+  if (winScreen.classList.contains("hidden")){
+    winScreen.classList.remove("hidden")
+    winText.innerText = `Player ${finn.winner} Wins!`
+    winText.classList.remove("hidden")
+    finn.clearWinner()
+  } else {
+    finn.alternateTurn()
+    winScreen.classList.add("hidden")
+    winText.classList.add("hidden")
+  }
 }
 
 function clearBoard(){
   for (let i=0; i < squares.length; i++){
     squares[i].innerHTML = ""
   }
+  displayTurn()
 }
 
 function submitCharacterSelection(){
@@ -263,7 +262,6 @@ function submitCharacterSelection(){
       readyPlayerOne.classList.add("hidden")
       chooseCharacterTextOne.classList.add("hidden")
       playerOneText.classList.remove("hidden")
-
     }
     playerOneIcon.classList.add("chosen-icon")
   } else if (event.target.id == "submit-two"){
@@ -286,18 +284,11 @@ function removeSelectedClass(){
 function changeIcon(){
   if (event.target.classList.contains("dropdown-content-one")){
     finn.playerOne.id = event.target.src
-    event.target.src = playerOneIcon.src
+    event.target.src = finn.playerOne.displayIcon.src
     finn.playerOne.selectIcon()
   } else if (event.target.classList.contains("dropdown-content-two")){
-    console.log("here line 145")
     finn.playerTwo.id = event.target.src
-    event.target.src = playerTwoIcon.src
+    event.target.src = finn.playerTwo.displayIcon.src
     finn.playerTwo.selectIcon()
   }
 }
-
-// function displayIconChoices(){
-//   for (let i=0; i < icons.length; i++){
-//     allChoices[i].src = icons[i]
-//   }
-// }
