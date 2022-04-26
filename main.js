@@ -159,9 +159,11 @@ dropdownTwo.addEventListener("click", changeIcon);
 // FUNCTIONS AND EVENT HANDLERS
 
 function handleClick() {
-  makeMove();
-  game.checkWinner();
+  if (makeMove()) {
+    renderDisplay()
+  } else {
   game.alternateTurn();
+  }
 }
 
 function makeMove(){
@@ -170,6 +172,9 @@ function makeMove(){
       if (!chosenSquare.innerHTML){
         chosenSquare.innerHTML = `<img src=${game.currentPlayer.id}>`
         game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+        if (game.checkWinner()) {
+          return true
+        }
       }
   }
 }
@@ -183,13 +188,12 @@ function renderDisplay(){
     setTimeout(toggleShowWinner, 5000)
     setTimeout(clearBoard, 2000)
   } else {
-    turnTracker.innerText = `It's Player ${game.nextPlayer.name}'s turn!`;
+    turnTracker.innerText = `It's Player ${game.currentPlayer.name}'s turn!`;
   }
 }
 
 function renderDraw(){
   turnTracker.innerText = "IT'S A DRAW!"
-  game.resetGame()
   setTimeout(renderDisplay, 1000)
   setTimeout(clearBoard, 1000)
 }
@@ -198,11 +202,11 @@ function toggleShowWinner(){
   if (winScreen.classList.contains("hidden")){
     winScreen.classList.remove("hidden")
     winText.classList.remove("hidden")
-    console.log(game.winner)
     winText.innerText = `Player ${game.winner} Wins!`
-    game.clearWinner()
+    game.winner = ""
   } else {
     game.alternateTurn()
+    game.resetGame();
     winScreen.classList.add("hidden")
     winText.classList.add("hidden")
   }

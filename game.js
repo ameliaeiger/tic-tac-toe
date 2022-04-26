@@ -21,11 +21,8 @@ class Game {
     this.turns += 1
     if (this.turns == 9){
       renderDraw()
+      this.resetGame()
     } else if (this.winner){
-      this.currentPlayer.isTurn = false;
-      this.nextPlayer.isTurn = true;
-      this.findTurn()
-      renderDisplay()
       this.resetGame()
     } else {
       this.currentPlayer.isTurn = false;
@@ -39,11 +36,7 @@ class Game {
       if (this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
         this.winner = this.currentPlayer.name
         this.currentPlayer.addPoint()
-        renderDisplay()
-        // setTimeout(toggleShowWinner, 1500)
-        // setTimeout(toggleShowWinner, 5000)
-        // setTimeout(clearBoard, 2000)
-        renderDisplay()
+        return true;
     }
   }
 }
@@ -51,9 +44,6 @@ class Game {
       this.playerOne.moves = []
       this.playerTwo.moves = []
       this.turns = 0;
-  }
-  clearWinner(){
-    this.winner = ""
   }
   findTurn(){
       if (this.playerOne.isTurn){
