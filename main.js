@@ -158,24 +158,19 @@ dropdownTwo.addEventListener("click", changeIcon);
 
 // FUNCTIONS AND EVENT HANDLERS
 
-function handleClick(){
-  if (event.target.classList.contains("square")){
-    let chosenSquare = event.target.closest("div")
-    if (!chosenSquare.innerHTML){
-    if (game.playerOne.isTurn){
-      chosenSquare.innerHTML = `<img src=${game.playerOne.id}>`
-      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      game.checkWinner();
-      game.alternateTurn();
-    } else {
-      chosenSquare.innerHTML = `<img src=${game.playerTwo.id}>`
-      game.currentPlayer.moves.push(parseInt(chosenSquare.id))
-      game.checkWinner()
-      game.alternateTurn()
-    }
-    } else {
-    return
-    }
+function handleClick() {
+  makeMove();
+  game.checkWinner();
+  game.alternateTurn();
+}
+
+function makeMove(){
+    if (event.target.classList.contains("square")){
+      let chosenSquare = event.target.closest("div")
+      if (!chosenSquare.innerHTML){
+        chosenSquare.innerHTML = `<img src=${game.currentPlayer.id}>`
+        game.currentPlayer.moves.push(parseInt(chosenSquare.id))
+      }
   }
 }
 
@@ -187,14 +182,17 @@ function renderDisplay(){
   } else {
     turnTracker.innerText = `It's ${game.nextTurn}'s turn!`;
   }
-
 }
 
+function renderDraw(){
+  turnTracker.innerText = "IT'S A DRAW!"
+}
+//SHOWRESULT
 function toggleShowWinner(){
   if (winScreen.classList.contains("hidden")){
     winScreen.classList.remove("hidden")
-    winText.innerText = `Player ${game.winner} Wins!`
     winText.classList.remove("hidden")
+    winText.innerText = `Player ${game.winner} Wins!`
     game.clearWinner()
   } else {
     game.alternateTurn()
