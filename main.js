@@ -52,7 +52,7 @@ function insertIconToDom(){
           return true
         }
       }
-  } else if (chosenSquare.innerHTML){
+    } else if (chosenSquare.innerHTML){
     console.log("seat's taken!")
   }
 }
@@ -76,7 +76,6 @@ function renderDraw(){
   turnTracker.innerText = "IT'S A DRAW!"
   setTimeout(clearBoard, 1000)
   setTimeout(game.resetGame, 1000)
-
 }
 
 function toggleWinScreen(){
