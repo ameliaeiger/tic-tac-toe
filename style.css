@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgb(168,236,255);
+  margin: 0;
 }
 
 body, header, section {
@@ -185,12 +186,12 @@ display: none!important;
 
 .win-screen {
   position: fixed;
-  bottom: 50px;
-  min-width: 600px;
-  min-height: 600px;
+  top: 0px;
+  min-width: 720px;
+  min-height: 720px;
   background-color: white;
-  border: 70px solid white;
-  border-radius: 25px;
+  border: 50px solid #f0fff0;
+  margin: 0;
 }
 
 .win-text {
@@ -198,6 +199,10 @@ display: none!important;
   bottom: 200px;
   padding: 25px;
   font-size: 100px;
-  background-color: rgba(255, 255, 255, .6);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 25px;
+}
+
+img {
   border-radius: 25px;
 }

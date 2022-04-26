@@ -1,15 +1,24 @@
 class Game {
   constructor(){
-    this.playerOne = new Player ("assets/finn.svg", "One", true)
-    this.playerTwo = new Player ("assets/jake.svg", "Two", false)
-    this.playerOneScore = this.playerOne.score
-    this.playerTwoScore = this.playerTwo.score
-    this.board = ""
+    this.playerOne = new Player ("assets/finn.svg", "One", true);
+    this.playerTwo = new Player ("assets/jake.svg", "Two", false);
+    this.playerOneScore = this.playerOne.score;
+    this.playerTwoScore = this.playerTwo.score;
     this.nextTurn = this.playerTwo;
     this.currentPlayer = this.playerOne;
     this.turns = 0;
     this.round = 1;
     this.winner = "";
+    this.winConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [6, 4, 2],
+    ];
   }
   instantiatePlayer(){
     let playerOne = new Player("assets/finn.svg", "Player One", true);
@@ -39,8 +48,8 @@ class Game {
      console.log("draw")
      this.resetGame()
    } else {
-     for (let i =0; i < winConditions.length; i++){
-      if(this.currentPlayer.moves.includes(winConditions[i][0]) && game.currentPlayer.moves.includes(winConditions[i][1]) && game.currentPlayer.moves.includes(winConditions[i][2])){
+     for (let i =0; i < this.winConditions.length; i++){
+      if(this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
         this.winner = this.currentPlayer.name
         this.round += 1
         this.currentPlayer.addPoint()

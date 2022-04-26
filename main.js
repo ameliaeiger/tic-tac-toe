@@ -1,6 +1,7 @@
 // GLOBALS
+let game = new Game();
 let gameBoard = document.getElementById("gameboard");
-let turnTracker = document.getElementById("turn-tracker")
+let turnTracker = document.getElementById("turn-tracker");
 let winScreen = document.getElementById("win-screen");
 let winText = document.getElementById("win-text");
 
@@ -14,7 +15,7 @@ let playerOneText = document.getElementById("player-one-text");
 let playerOneScoreBoard = document.getElementById("one-score");
 
 //Player Two
-let playerTwoIcon = document.getElementById("visibleTwo")
+let playerTwoIcon = document.getElementById("visibleTwo");
 let dropdownTwo = document.getElementById("dropdown-two");
 let playerTwoChoices = document.querySelectorAll(".dropdown-content-two");
 let readyPlayerTwo = document.getElementById("submit-two");
@@ -28,7 +29,7 @@ let icons = [
   "assets/finn.svg",
   "assets/ice-king.svg",
   "assets/lumpy.svg",
-]
+];
 
 let quotes = [
   "I'm killing you with ice cream!",
@@ -144,7 +145,7 @@ let quotes = [
   "Weirdo.",
   "My vault feels lighter.",
   "Yeah, it's pretty math... you psychopath!",
-]
+];
 
 // EVENT LISTENERS
 
@@ -154,12 +155,7 @@ readyPlayerTwo.addEventListener("click", submitCharacterSelection);
 dropdownOne.addEventListener("click", changeIcon);
 dropdownTwo.addEventListener("click", changeIcon);
 
-
-
-
 // FUNCTIONS AND EVENT HANDLERS
-
-let game = new Game()
 
 function handleClick(){
   if (event.target.classList.contains("square")){
@@ -184,17 +180,17 @@ function handleClick(){
 
 let squares = document.querySelectorAll(".square")
 //Put in game.js, playerMove goes in player.js
-let winConditions = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [6, 4, 2],
-]
-
+// let winConditions = [
+//   [0, 1, 2],
+//   [3, 4, 5],
+//   [6, 7, 8],
+//   [0, 3, 6],
+//   [1, 4, 7],
+//   [2, 5, 8],
+//   [0, 4, 8],
+//   [6, 4, 2],
+// ]
+//
 // MOve to class
 // function checkWinner(){
 //   if ((squares[0].innerHTML == game.currentPlayer.id) && (squares[1].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id) ||
@@ -266,20 +262,18 @@ function submitCharacterSelection(){
   }
 }
 
-function removeSelectedClass(){
-  if (event.target.classList.contains("player-icon")){
-    event.target.classList.remove("visible")
-  }
-}
-
 function changeIcon(){
   if (event.target.classList.contains("dropdown-content-one")){
+    if (event.target.src != game.playerTwo.id){
     game.playerOne.id = event.target.src
     event.target.src = game.playerOne.displayIcon.src
     game.playerOne.selectIcon()
+    }
   } else if (event.target.classList.contains("dropdown-content-two")){
+    if (event.target.src != game.playerOne.id){
     game.playerTwo.id = event.target.src
     event.target.src = game.playerTwo.displayIcon.src
     game.playerTwo.selectIcon()
+    }
   }
 }
