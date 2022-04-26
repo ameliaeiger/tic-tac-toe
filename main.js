@@ -179,35 +179,7 @@ function handleClick(){
 }
 
 let squares = document.querySelectorAll(".square")
-//Put in game.js, playerMove goes in player.js
-// let winConditions = [
-//   [0, 1, 2],
-//   [3, 4, 5],
-//   [6, 7, 8],
-//   [0, 3, 6],
-//   [1, 4, 7],
-//   [2, 5, 8],
-//   [0, 4, 8],
-//   [6, 4, 2],
-// ]
-//
-// MOve to class
-// function checkWinner(){
-//   if ((squares[0].innerHTML == game.currentPlayer.id) && (squares[1].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id) ||
-//       (squares[3].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) ||
-//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
-//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[3].innerHTML == game.currentPlayer.id) && (squares[6].innerHTML == game.currentPlayer.id) ||
-//       (squares[1].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[7].innerHTML == game.currentPlayer.id) ||
-//       (squares[2].innerHTML == game.currentPlayer.id) && (squares[5].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
-//       (squares[0].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[8].innerHTML == game.currentPlayer.id) ||
-//       (squares[6].innerHTML == game.currentPlayer.id) && (squares[4].innerHTML == game.currentPlayer.id) && (squares[2].innerHTML == game.currentPlayer.id)) {
-//     console.log(game.currentPlayer.id + " wins!")
-//     game.currentPlayer.addPoint()
-//
-//   } else {
-//     console.log("draw!")
-//   }
-// }
+
 
 function displayTurn(){
   turnTracker.innerText = `It's ${game.nextTurn}'s turn!`

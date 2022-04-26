@@ -44,7 +44,7 @@ class Game {
     }
   }
   checkWinner(){
-    if (this.turns == 9 && playerOne.moves.length == 5){
+    if (this.turns == 9 && game.playerOne.moves.length == 5){
      console.log("draw")
      this.resetGame()
    } else {
