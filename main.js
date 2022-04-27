@@ -72,10 +72,9 @@ function renderDisplay(){
 }
 
 function renderDraw(){
-  console.log("it happened")
   turnTracker.innerText = "IT'S A DRAW!"
   setTimeout(clearBoard, 1000)
-  setTimeout(game.resetGame, 1000)
+  setTimeout(game.resetGame, 500)
 }
 
 function toggleWinScreen(){
@@ -90,7 +89,6 @@ function toggleWinScreen(){
   toggleHidden(winText);
   }
 }
-
 
 function clearBoard(){
   for (let i=0; i < squares.length; i++){

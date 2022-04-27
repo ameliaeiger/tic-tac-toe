@@ -21,6 +21,7 @@ class Game {
   alternateTurn(){
     this.turns += 1
     if (this.turns == 9){
+      this.turns = 0;
       this.rounds += 1
       renderDraw()
     } else if (this.winner){
