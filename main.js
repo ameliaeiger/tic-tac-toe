@@ -76,7 +76,7 @@ function renderDisplay(){
 
 function renderDraw(){
   turnTracker.innerText = "IT'S A DRAW!";
-  setTimeout(clearBoard, 2000);
+  setTimeout(clearBoard, 1000);
   setTimeout(game.resetGame, 1000);
 }
 
