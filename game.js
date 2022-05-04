@@ -19,22 +19,12 @@ class Game {
     ];
   }
   alternateTurn(){
-    this.turns += 1
-    if (this.turns == 9){
-      this.turns = 0;
-      this.rounds += 1
-      renderDraw()
-    } else if (this.winner){
-      this.resetGame()
-    } else {
       this.currentPlayer.isTurn = false;
       this.nextPlayer.isTurn = true;
       this.findTurn()
-      renderDisplay()
-    }
   }
   checkWinner(){
-     for (let i =0; i < this.winConditions.length; i++){
+     for (let i=0; i < this.winConditions.length; i++){
       if (this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
         this.winner = this.currentPlayer.name
         this.currentPlayer.addPoint()
@@ -43,10 +33,18 @@ class Game {
       }
     }
   }
+  checkDraw(){
+    if (this.turns == 9) {
+      this.rounds += 1
+      renderDraw()
+      return true;
+    }
+  }
   resetGame(){
       game.playerOne.moves = []
       game.playerTwo.moves = []
-      this.turns = 0;
+      game.turns = 0;
+      this.winner = ""
       game.findStartRound()
       renderDisplay();
   }
