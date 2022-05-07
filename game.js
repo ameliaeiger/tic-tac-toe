@@ -24,13 +24,20 @@ class Game {
       this.findTurn()
   }
   checkWinner(){
-     for (let i=0; i < this.winConditions.length; i++){
-      if (this.currentPlayer.moves.includes(this.winConditions[i][0]) && this.currentPlayer.moves.includes(this.winConditions[i][1]) && this.currentPlayer.moves.includes(this.winConditions[i][2])){
-        this.winner = this.currentPlayer.name
-        this.currentPlayer.addPoint()
-        this.rounds += 1
-        return true;
-      }
+    if (this.winConditions.forEach(this.checkWinConditions)){
+      return true;
+    } else if (!this.winConditions.forEach(this.checkWinConditions)){
+      return false;
+    }
+  }
+  checkWinConditions(item){
+    if (game.currentPlayer.moves.includes(item[0]) && game.currentPlayer.moves.includes(item[1]) && game.currentPlayer.moves.includes(item[2])){
+      game.winner = game.currentPlayer.name
+      game.currentPlayer.addPoint()
+      game.rounds += 1
+      return true;
+    } else {
+      return false;
     }
   }
   checkDraw(){
