@@ -21,7 +21,7 @@ This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on craft
 
 -Play as your favorite character from the land of Ooo!
 
-![choose-character](https://i.imgur.com/HHcE3Lw.png)
+![choose](https://i.imgur.com/A1BXYFJ.gif)
 
 ## Sweet Win Screen
 
