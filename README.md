@@ -8,6 +8,10 @@ This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on craft
 
 [Amelia Eiger](https://github.com/ameliaeiger)
 
+## Setup
+
+Hover over your icon to select a character to get started!
+
 ## Features
 
 - Adorable UI
@@ -29,3 +33,11 @@ This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on craft
 
 ![Imgur](https://i.imgur.com/wPxnLOm.png?1)
 
+## Future Features
+
+- Best 2 out of 3
+- Play against the computer!
+
+## Reflections
+
+Building a data model before adding DOM manipulation ensures data lives where it needs to.
