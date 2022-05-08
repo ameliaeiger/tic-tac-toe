@@ -35,17 +35,15 @@ dropdownTwo.addEventListener("click", changeIcon);
 // FUNCTIONS AND EVENT HANDLERS
 
 function handleClick() {
-  if (insertIconToDom()){
+  insertIconToDom();
   if (game.checkWinner()){
     renderDisplay();
     return;
   } else if (game.checkDraw()){
     return;
   } else {
-    console.log("triggered")
   game.alternateTurn();
   renderDisplay();
-    }
   }
 }
 
@@ -56,9 +54,8 @@ function insertIconToDom(){
         chosenSquare.innerHTML = `<img src=${game.currentPlayer.id}>`;
         game.currentPlayer.moves.push(parseInt(chosenSquare.id));
         game.turns += 1;
-        return true;
       }
-    } else {
+    } else if (chosenSquare.innerHTML){
     console.log("seat's taken!");
   }
 }
