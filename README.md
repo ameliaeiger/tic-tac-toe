@@ -27,5 +27,5 @@ This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on craft
 
 -This lil bee is so proud of you!
 
-![bee](https://i.imgur.com/wPxnLOm.png?1)
+![bee](https://i.imgur.com/S4cakwh.gif)
 
