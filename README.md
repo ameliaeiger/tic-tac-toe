@@ -4,6 +4,10 @@ A Turing School of Software and Design project based on the beloved cartoon seri
 
 This project utilizes HTML, CSS, and JavaScript. Extra emphasis was put on crafting an efficient data model and connecting it to the DOM.
 
+## Deployed Link
+
+[Play the game!](https://ameliaeiger.github.io/tic-tac-toe/)
+
 ## Contributors
 
 [Amelia Eiger](https://github.com/ameliaeiger)
